@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="board">
+        <h1>掲示板</h1>
+        <div class="input">
+            <!-- <form name="myboard"> -->
+            <ul>
+                <li>
+                    <p>ニックネーム : </p><input type="text" name="name" class="nickname">
+                </li>
+                <li>
+                    <p>本文：</p><textarea class="messages"></textarea></li>
+                <li><button id="btn">投稿</button></li>
+            </ul>
+            <!-- </form> -->
+        </div>
+    </div>
+    <hr>
+    <div class="boardmessage">
+        <h1>投稿一覧</h1>
+        <ul>
+            <li>
+
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./js/post.js"></script>
+
+</body>
+
+</html>

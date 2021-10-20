@@ -1,0 +1,31 @@
+.input {  
+    font-size: 24px;
+    
+}
+.input ul{
+    list-style-type: none;
+    
+}
+.input li{
+    display: flex;
+
+}
+.input li input{
+    height: 20px;
+
+    
+    
+}
+.input .nickname{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 180px;
+}
+.input .messages{
+    width: 270px;
+    margin-top: 0;
+}
+.input .submit{
+    margin-left: 10%;
+    margin-top: 10px;
+}
