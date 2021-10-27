@@ -1,31 +1,57 @@
-.input {  
+.input {
     font-size: 24px;
-    
 }
-.input ul{
-    list-style-type: none;
-    
+
+li {
+    list-style: none;
 }
-.input li{
+
+.input li {
     display: flex;
-
 }
-.input li input{
+
+.input li input {
     height: 20px;
-
-    
-    
 }
-.input .nickname{
+
+.input .nickname {
     margin-top: auto;
     margin-bottom: auto;
     width: 180px;
 }
-.input .messages{
+
+.input .messages {
     width: 270px;
     margin-top: 0;
 }
-.input .submit{
+
+.input .submit {
     margin-left: 10%;
     margin-top: 10px;
+}
+
+.card {
+    background-color: rgb(170, 170, 170);
+    padding: 10px;
+    width: 30%;
+    margin-top: 10px;
+}
+
+.card .left {
+    font-size: 24px;
+}
+
+.card .right {
+    text-align: right;
+}
+
+.card .right p {
+    display: inline-flex;
+    margin-right: 10px;
+}
+
+.card .name {
+    font-size: 15px;
+    color: green;
+    font-weight: bolder;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 
 <head>
     <meta charset="UTF-8">
@@ -12,30 +12,46 @@
 </head>
 
 <body>
-    <div class="board">
-        <h1>掲示板</h1>
-        <div class="input">
-            <!-- <form name="myboard"> -->
-            <ul>
-                <li>
-                    <p>ニックネーム : </p><input type="text" name="name" class="nickname">
-                </li>
-                <li>
-                    <p>本文：</p><textarea class="messages"></textarea></li>
-                <li><button id="btn">投稿</button></li>
-            </ul>
-            <!-- </form> -->
+    <main>
+        <div class="board">
+            <h1>掲示板</h1>
+            <div class="input">
+                <!-- <form name="myboard"> -->
+                <ul>
+                    <li>
+                        <p>ニックネーム : </p><input type="text" name="name" class="nickname">
+                    </li>
+                    <li>
+                        <p>本文：</p><textarea class="messages"></textarea></li>
+                    <li><button id="btn">投稿</button></li>
+                </ul>
+                <!-- </form> -->
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="boardmessage">
-        <h1>投稿一覧</h1>
-        <ul>
-            <li>
+        <hr>
 
-            </li>
-        </ul>
-    </div>
+        <div class="lists-block">
+            <h2>投稿一覧</h2>
+            <ul class="lists">
+                <!-- <li class="card">
+                    
+                    <div class="left">
+                        こんにちは！
+                    </div>
+                    <div class="right">
+                        <div class="button-block">
+                            <button class="edit">編集</button>
+                            <button class="delete">削除</button>
+                        </div>
+                        <p class="id">1 </p><p class="name">たらこさん</p>
+                    </div>
+                
+                
+                </li>
+-->
+            </ul>
+        </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./js/post.js"></script>

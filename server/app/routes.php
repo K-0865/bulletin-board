@@ -24,9 +24,10 @@ return function (App $app) {
         $result = mysqli_query($link,"SELECT * FROM `messages` ");
         $datas = mysqli_fetch_all($result);
 
-        $response->getBody()->write(json_encode($datas));
+        $response->getBody()->write(json_encode($datas ,JSON_UNESCAPED_UNICODE));
+
         
-        return $response;
+        return $response->withHeader('Content-Type','application/json');
     });
     $app->post('/api2', function (Request $request, Response $response) {
  
@@ -35,14 +36,37 @@ return function (App $app) {
         
         return $response;
     });
+    
+    $app->delete('/api', function (Request $request, Response $response) {
+        $param = $request->getParsedBody();
+        if ($param["id"] != NULL ){
+
+        $link = mysqli_connect("localhost","root","","bulletin-board");
+
+        $stmt = mysqli_prepare($link,'DELETE FROM messages WHERE id = ?; ');
+        mysqli_stmt_bind_param($stmt,"ss",$param["id"]);
+        $result = mysqli_stmt_execute($stmt);
+        mysqli_close($link);
+        $response->getBody()->write(json_encode($result));
+
+        }else{
+            die("NOT HAVE INPUT");
+        }
+        return $response;
+    });
+    
     $app->post('/api', function (Request $request, Response $response) {
-        $param = $request->getQueryParams();
-        $name = $param["name"];
-        $messages = $param["messages"];
-        if ($name != NULL and $messages != NULL){
+        //$param = $request->getQueryParams();
+        $param = $request->getParsedBody();
+        //$name = $param["name"];
+        //$messages = $param["messages"];
+        
+        //if ($name != NULL and $messages != NULL){
+        if ($param["name"] != NULL and $param["messages"] != NULL){
             $link = mysqli_connect("localhost","root","","bulletin-board");
             $stmt = mysqli_prepare($link,"INSERT INTO messages(name,messages) VALUES(?,?)");
-            mysqli_stmt_bind_param($stmt,"ss",$name,$messages);
+            //mysqli_stmt_bind_param($stmt,"ss",$name,$messages);
+            mysqli_stmt_bind_param($stmt,"ss",$param["name"],$param["messages"]);
             $result = mysqli_stmt_execute($stmt);
             mysqli_close($link);
             $response->getBody()->write(json_encode($result));
