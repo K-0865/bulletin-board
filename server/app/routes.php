@@ -19,7 +19,7 @@ return function (App $app) {
         return $response;
     });
     $app->get('/api', function (Request $request, Response $response) {
-        $link = mysqli_connect("localhost","root","","bulletin-board");
+        $link = mysqli_connect("localhost","root","","kk");
 
         $result = mysqli_query($link,"SELECT * FROM `messages` ");
         $datas = mysqli_fetch_all($result);
@@ -41,7 +41,7 @@ return function (App $app) {
         $param = $request->getParsedBody();
         if ($param["id"] != NULL ){
 
-        $link = mysqli_connect("localhost","root","","bulletin-board");
+        $link = mysqli_connect("localhost","root","","kk");
 
         $stmt = mysqli_prepare($link,'DELETE FROM messages WHERE id = ?; ');
         mysqli_stmt_bind_param($stmt,"ss",$param["id"]);
@@ -63,7 +63,7 @@ return function (App $app) {
         
         //if ($name != NULL and $messages != NULL){
         if ($param["name"] != NULL and $param["messages"] != NULL){
-            $link = mysqli_connect("localhost","root","","bulletin-board");
+            $link = mysqli_connect("localhost","root","","kk");
             $stmt = mysqli_prepare($link,"INSERT INTO messages(name,messages) VALUES(?,?)");
             //mysqli_stmt_bind_param($stmt,"ss",$name,$messages);
             mysqli_stmt_bind_param($stmt,"ss",$param["name"],$param["messages"]);
