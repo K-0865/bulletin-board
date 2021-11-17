@@ -5,6 +5,7 @@ use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use SebastianBergmann\Environment\Console;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -36,18 +37,40 @@ return function (App $app) {
         
         return $response;
     });
-    
-    $app->delete('/api', function (Request $request, Response $response) {
+    $app->put('/api/edit', function (Request $request, Response $response) {
+        $params = $request->getParsedBody();
+        $id = $params['id'];
+        $title = $params['title'];
+        $message = $params['message'];
+
+        // データベース操作
+        $link = mysqli_connect('localhost', 'root', '', 'bulletin-board');
+        $stmt = mysqli_prepare($link, "UPDATE messages SET title = ?, message = ? WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "ssi", $title, $message, $id);
+        $result = mysqli_stmt_execute($stmt);
+        
+        mysqli_close($link);
+
+        $response->getBody()->write(json_encode($result, JSON_UNESCAPED_UNICODE));
+        return $response;
+    });
+    $app->post('/api/del', function (Request $request, Response $response) {
         $param = $request->getParsedBody();
+
+        // $response->getBody()->write(json_encode($param));
+        // return $response;
+
+        //$response->getBody()->write(json_encode($param));
+        //$param = $request->getQueryParams();
         if ($param["id"] != NULL ){
 
-        $link = mysqli_connect("localhost","root","","kk");
+            $link = mysqli_connect("localhost","root","","kk");
 
-        $stmt = mysqli_prepare($link,'DELETE FROM messages WHERE id = ?; ');
-        mysqli_stmt_bind_param($stmt,"ss",$param["id"]);
-        $result = mysqli_stmt_execute($stmt);
-        mysqli_close($link);
-        $response->getBody()->write(json_encode($result));
+            $stmt = mysqli_prepare($link,'DELETE FROM messages WHERE id = ?;');
+            mysqli_stmt_bind_param($stmt,"s",$param["id"]);
+            $result = mysqli_stmt_execute($stmt);
+            mysqli_close($link);
+            $response->getBody()->write(json_encode($result));
 
         }else{
             die("NOT HAVE INPUT");
