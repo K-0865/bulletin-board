@@ -37,26 +37,29 @@ return function (App $app) {
         
         return $response;
     });
-    $app->put('/api/edit', function (Request $request, Response $response) {
-        $params = $request->getParsedBody();
-        $id = $params['id'];
-        $title = $params['title'];
-        $message = $params['message'];
-
+    $app->post('/api/edit', function (Request $request, Response $response) {
+        $param = $request->getParsedBody();
+        
+        //$response->getBody()->write(json_encode($param));
+        //return $response;
+        
+        // $id = $param['id'];
+        // $name = $param['name'];
+        // $message = $param['messages'];
         // データベース操作
-        $link = mysqli_connect('localhost', 'root', '', 'bulletin-board');
-        $stmt = mysqli_prepare($link, "UPDATE messages SET title = ?, message = ? WHERE id = ?");
-        mysqli_stmt_bind_param($stmt, "ssi", $title, $message, $id);
+        $link = mysqli_connect('localhost', 'root', '', 'kk');
+        $stmt = mysqli_prepare($link, "UPDATE messages SET name = ?, messages = ? WHERE id = ?");
+        //mysqli_stmt_bind_param($stmt, "ssi", $name, $message, $id);
+        mysqli_stmt_bind_param($stmt, "ssi", $param['name'], $param['messages'], $param['id']);
         $result = mysqli_stmt_execute($stmt);
         
         mysqli_close($link);
-
         $response->getBody()->write(json_encode($result, JSON_UNESCAPED_UNICODE));
         return $response;
     });
     $app->post('/api/del', function (Request $request, Response $response) {
         $param = $request->getParsedBody();
-
+        
         // $response->getBody()->write(json_encode($param));
         // return $response;
 

@@ -50,9 +50,10 @@ function format_get_board(id, name, messages) {
     format += id;
     format += '"> 編集 </button> <button class = "delete" id = "del';
     format += id;
-    format += '" onClick="f01()"> 削除 </button> </div> <p class="id"> ';
-    format += id;
-    format += ' </p><p class = "name" id = "name'
+    format += '" onClick="f01()"> 削除 </button> </div> ';
+    //format += '" onClick="f01()"> 削除 </button> </div> <p class="id"> ';
+    //format += id;
+    format += ' <p class = "name" id = "name'
     format += id;
     format += '">'
     format += name
@@ -77,10 +78,10 @@ function edit(){
             user = window.prompt("ユーザー名を入力してください",user_name );
             message = window.prompt("message",messages_get );
             $.ajax({
-                type: 'PUT',
+                type: 'POST',
                 url: 'http://localhost:8080/api/edit',
                 //dataType: 'json',
-                data: { 'name': user, 'messages': message }
+                data: { 'id': user_id,'name': user, 'messages': message }
             })
             .done(function(data) {
                 alert("Done");
