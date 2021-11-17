@@ -2,6 +2,7 @@ $('#btn').on('click', () => {
 
     var nick = $(".nickname").val();
     var send_messages = $(".messages").val();
+    
     if (nick != '' && send_messages != '') {
 
         $.ajax({
@@ -78,10 +79,10 @@ $('.lists').on('click', '.delete', function() {
   $('.lists').on('click', '.edit', function() {
 
     let id = $(this).parents('.card').data('id');
-    console.log(id);
+    //console.log(id);
     user_name_temp = "name"+id;
     messages_get_temp = "mes"+id;
-    console.log(user_name_temp)
+   // console.log(user_name_temp)
     user_name = document.getElementById(user_name_temp).textContent;
     messages_get = document.getElementById(messages_get_temp).textContent;
     
